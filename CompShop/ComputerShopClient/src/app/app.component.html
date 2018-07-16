@@ -1,0 +1,29 @@
+<!-- Navigation -->
+<div></div>
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <a class="navbar-brand" href="#">ComputerShop</a>
+    <ul class="nav navbar-nav">
+      <li class="nav-item active">
+        <a href="#">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav pull-right">
+      <li *ngIf="isLoggedIn()"><a (click)="logout()">Logout</a></li>
+    </ul>
+
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container theme-showcase">
+  <div class="jumbotron">
+      <h1>Comp Shop</h1>
+      <p>Spring + Angular aplikacija razvijena u okviru Obuke iz veb programiranja 2017. godine.</p>
+    </div>
+  <router-outlet></router-outlet>
+</div>  
+
+  <!-- /.container -->

@@ -1,0 +1,41 @@
+<div class="row">
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+			<button class="btn btn-primary" (click)="changePage(-1)"><<</button>
+			<button class="btn btn-primary" (click)="changePage(1)">>></button>
+			<table *ngIf="page" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Brand</th>
+						<th>Price</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let component of page.content; let i=index">
+						<td>{{component.brand.name}}</td>
+						<td>{{component.price}}</td>
+						<td>
+							<button *ngIf="isAdmin" (click)="deleteComponent(component.id)" class="btn btn-danger">delete</button>
+  							<button *ngIf="isAdmin" (click)="setActiveComponent(component)" class="btn btn-warning">edit</button>
+							<button *ngIf="isBuyer" (click)="buy(component)" class="btn btn-primary">buy</button>
+							
+						</td>
+					</tr>
+				</tbody>
+			</table>
+     
+    </div>
+    <div class="col-md-2">
+		<app-shopping-cart *ngIf="isBuyer" [chosenComponents]="chosenComponents"></app-shopping-cart>	
+		<app-edit-comp-component *ngIf="isAdmin" [componentToChange]="activeComponent" 
+						(changedComponent)="editComponent($event)" (addedComponent)="addComponent($event)"
+						(resetEdit)="loadData()" ></app-edit-comp-component>
+		
+		<app-add-component *ngIf="isAdmin && activeComponent.id === null" (addedComponent)="addComponent($event)" 
+							(resetAdd)="loadData()"></app-add-component>
+	</div>
+	</div>
+
+
